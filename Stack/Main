@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StackExperiment
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Stack stack = new Stack();
+
+            Console.Out.WriteLine("Is the stack empty: " + stack.IsEmpty());
+
+            stack.StackPush(4);
+            stack.StackPush(7);
+
+            stack.StackPop();
+
+            Console.Out.WriteLine(stack.StackPeek());
+
+            Console.Out.WriteLine("Is the stack empty: " + stack.IsEmpty());
+
+            Console.In.Read();
+        }
+    }
+}
