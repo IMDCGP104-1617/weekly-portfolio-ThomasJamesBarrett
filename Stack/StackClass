@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StackExperiment
+{
+    class Stack
+    {
+        private object head;
+        private int count;
+        LinkedList<int> stacklist = new LinkedList<int>();
+
+        public Stack()
+        {
+            
+            head = null;
+            count = 0;
+            
+        }
+
+        public void StackPush(int input)
+        {
+            Console.Out.WriteLine("Pushing " + input);
+            count++;
+            stacklist.AddFirst(input);
+            this.head = input;
+
+            Console.Out.WriteLine(head);
+
+        }
+
+        public void StackPop()
+        {
+            if (head != null)
+            {
+                Console.Out.WriteLine("Removing first item on stack");
+                stacklist.RemoveFirst();
+                count--;
+                head = stacklist.ElementAt(count - 1);
+
+                Console.Out.WriteLine(head);
+            }
+            else
+            {
+                Console.Out.WriteLine("There is no stack content");
+            }
+            
+        }
+
+        public object StackPeek()
+        {
+            return head;
+        }
+
+        public bool IsEmpty()
+        {
+            if (head == null)
+            {
+                return true;
+            }
+            else if (head != null)
+            {
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        ~Stack()
+        {
+
+        }
+    }
+}
