@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+
+namespace Queues
+{
+
+    class Queue
+    {
+        private object head;
+        private int count;
+        LinkedList<int> queuelist = new LinkedList<int>();
+
+        
+        public Queue()
+        {
+            head = null;
+            count = 0;
+            
+        }
+
+
+        public void Enqueue(int input)
+        {
+            queuelist.AddFirst(input);
+            if (head == null)
+            {
+                
+                head = input;
+
+                
+            }
+            count++;
+
+            
+        }
+
+        public void Dequeue()
+        {
+            if(count != 0)
+            {
+                queuelist.RemoveLast();
+                head = queuelist.ElementAt(count - 1);
+                count--;
+            }
+
+        }
+
+        public object Peek()
+        {
+            return head;
+        }
+
+        public int Length()
+        {
+            return count;
+        }
+
+        public bool IsEmpty()
+        {
+            if (head == null)
+            {
+                return true;
+            }
+            else if (head != null)
+            {
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        ~Queue()
+        {
+
+        }
+    }
+    
+}
+
