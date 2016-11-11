@@ -65,14 +65,48 @@ namespace LinkedLists
 
         }
 
-        public void RemoveBeginning()
+        public int RemoveBeginning()
         {
-            //Still a bit confused about this concept
-            length--;
+            int ret;
+            
+            if (head != null)
+            {
+                ret = head.Data;
+                if(head.Next = null)
+                {
+                    head = null;
+                }
+                else
+                {
+                    head = head.Next;
+                }
+                length--;
+            }
+            return ret;
         }
 
-        public void RemoveAfter()
+        public int RemoveAfter()
         {
+            int ret;
+            
+            Node current = head;
+            int counter = 0;
+            
+            while(current != null)
+            {
+                if(counter == count)
+                {
+                    if(current.Next != null)
+                    {
+                        ret = current.Next.Data;
+                        current.Next = current.Next.Next;
+                    }
+                    
+                    break;
+                }
+                current = current.Next;
+                counter++;
+            }
             length--;
         }
 
