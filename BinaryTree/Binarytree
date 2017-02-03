@@ -26,7 +26,7 @@ namespace BinaryTreeProject
     {
         public BinaryTree left;
         public BinaryTree right;
-        public int value;
+        public int? value = null;
 
         public BinaryTree()
         {
@@ -37,12 +37,17 @@ namespace BinaryTreeProject
 
         public void Insert(int value)
         {
+            if(this.value == null)
+            {
+                this.value = value;
+                return;
+            }
             if(this.value < value)
             {
                 if(left == null)
                 {
                     left = new BinaryTree();
-                    left.value = this.value;
+                    left.value = value;
                 }
                 else
                 {
@@ -55,7 +60,7 @@ namespace BinaryTreeProject
                 if (right == null)
                 {
                     right = new BinaryTree();
-                    right.value = this.value;
+                    right.value = value;
                 }
                 else
                 {
@@ -66,15 +71,59 @@ namespace BinaryTreeProject
 
 
 
-        
 
 
-        public void Delete()
+
+        public void Delete(int? value)
         {
 
-        }
+            if(this.value == value)
+            {
+                this.value = null;
+                Console.Out.WriteLine("Deleted " + value);
+                return;
+            }
+            else if(this.value < value && left.value != null)
+            {
+                left.Delete(value);
+            }
+            else if(this.value < value && right.value != null)
+            {
+                right.Delete(value);
+            }
 
-        public int Search()
+            //if (left.value != null)
+            //{
+            //    if (left.value == this.value)
+            //    {
+            //        left.value = null;
+            //        Console.Out.WriteLine("Deleted " + this.value);
+            //    }
+            //    else if (left.value < this.value)
+            //    {
+            //        left.Delete(this.value);
+            //    }
+            //}
+
+
+            //if (left.value != null)
+            //{
+            //    if (right.value == this.value)
+            //    {
+            //        right.value = null;
+            //        Console.Out.WriteLine("Deleted " + this.value);
+            //    }
+            //    else if (right.value < this.value)
+            //    {
+            //        right.Delete(this.value);
+            //    }
+            //}
+        }
+            
+            
+        
+
+        public int Search(int value)
         {
             return 1;
         }
