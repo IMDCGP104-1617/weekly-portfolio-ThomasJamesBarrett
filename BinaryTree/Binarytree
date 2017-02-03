@@ -1,0 +1,88 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BinaryTreeProject
+{
+    //class Node
+    //{
+    //    public Node left;
+    //    public Node right;
+    //    public int value;
+
+    //    public Node(int value)
+    //    {
+    //        this.value = value;
+    //        left = null;
+    //        right = null;
+    //    }
+    //}
+
+
+
+    class BinaryTree
+    {
+        public BinaryTree left;
+        public BinaryTree right;
+        public int value;
+
+        public BinaryTree()
+        {
+            //this.value = value;
+            //left = null;
+            //right = null;
+        }
+
+        public void Insert(int value)
+        {
+            if(this.value < value)
+            {
+                if(left == null)
+                {
+                    left = new BinaryTree();
+                    left.value = this.value;
+                }
+                else
+                {
+                    left.Insert(value);
+                }
+            }
+
+            if (this.value > value)
+            {
+                if (right == null)
+                {
+                    right = new BinaryTree();
+                    right.value = this.value;
+                }
+                else
+                {
+                    right.Insert(value);
+                }
+            }
+        }
+
+
+
+        
+
+
+        public void Delete()
+        {
+
+        }
+
+        public int Search()
+        {
+            return 1;
+        }
+
+        public int Traverse()
+        {
+            return 1;
+        }
+
+    }
+}
