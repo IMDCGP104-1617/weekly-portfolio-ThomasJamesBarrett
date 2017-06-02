@@ -37,14 +37,14 @@ namespace BinaryTreeProject
 
         public void Insert(int value)
         {
-            if(this.value == null)
+            if (this.value == null)
             {
                 this.value = value;
                 return;
             }
-            if(this.value < value)
+            if (this.value > value)
             {
-                if(left == null)
+                if (left == null)
                 {
                     left = new BinaryTree();
                     left.value = value;
@@ -55,7 +55,7 @@ namespace BinaryTreeProject
                 }
             }
 
-            if (this.value > value)
+            if (this.value < value)
             {
                 if (right == null)
                 {
@@ -74,58 +74,118 @@ namespace BinaryTreeProject
 
 
 
-        public void Delete(int? value)
+        public int? Delete(int? value)
         {
-
-            if(this.value == value)
+            if(this.value == null)
             {
-                this.value = null;
-                Console.Out.WriteLine("Deleted " + value);
-                return;
+                return this.value;
             }
-            else if(this.value < value && left.value != null)
+            if(this.value > value)
             {
-                left.Delete(value);
+                left = Delete(left,value);
             }
-            else if(this.value < value && right.value != null)
+            else if(this.value < value)
             {
-                right.Delete(value);
+                right = Delete(left, value);
             }
+            else {
+                if (this.left == null) {
+                    return this.right.value;
+                }
+                else if(this.right == null)
+                {
+                    return this.left.value;
+                }
 
-            //if (left.value != null)
-            //{
-            //    if (left.value == this.value)
-            //    {
-            //        left.value = null;
-            //        Console.Out.WriteLine("Deleted " + this.value);
-            //    }
-            //    else if (left.value < this.value)
-            //    {
-            //        left.Delete(this.value);
-            //    }
-            //}
+                this.value = this.right.value;
 
-
-            //if (left.value != null)
-            //{
-            //    if (right.value == this.value)
-            //    {
-            //        right.value = null;
-            //        Console.Out.WriteLine("Deleted " + this.value);
-            //    }
-            //    else if (right.value < this.value)
-            //    {
-            //        right.Delete(this.value);
-            //    }
-            //}
+                this.right = Delete(this.right, this.value);
+            }
+            return value;
         }
-            
-            
-        
 
-        public int Search(int value)
+
+        public BinaryTree Delete(BinaryTree leaf, int? value)
         {
-            return 1;
+            if(leaf.value == null)
+            {
+                return leaf;
+            }
+            if (value < leaf.value)
+            {
+                leaf.left = Delete(leaf.left, value);
+            }
+            else if (value > leaf.value)
+            {
+                leaf.right = Delete(leaf.right, value);
+            }
+
+            else {
+                if(leaf.left == null)
+                {
+                    return leaf.right;
+                }
+                else if(leaf.right == null)
+                {
+                    return leaf.left;
+                }
+
+                leaf = leaf.right;
+
+                left.right = Delete(leaf.right, leaf.value);
+            }
+
+            return leaf;
+
+        }
+
+
+
+
+        public int? Search(int value)
+        {
+            if(this.value == null)
+            {
+                return null;
+            }
+
+            if (this.value == value)
+            {
+                return this.value;
+            }
+            else if(this.value > value)
+            {
+                return Search(this.left, value);//Left
+            }
+            else if(this.value < value)
+            {
+                return Search(this.right, value); //right
+            }
+            return this.value;
+
+            
+        }
+
+        public int? Search(BinaryTree leaf, int? value)
+        {
+            if (leaf.value == null)
+            {
+                return null;
+            }
+
+            if (leaf.value == value)
+            {
+                return leaf.value;
+            }
+            else if (leaf.value > value)
+            {
+                return Search(leaf.left, value);//Left
+            }
+            else if (left.value < value)
+            {
+                return Search(leaf.right, value); //right
+            }
+            return leaf.value;
         }
 
         public int Traverse()
