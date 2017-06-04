@@ -76,23 +76,25 @@ namespace BinaryTreeProject
 
         public int? Delete(int? value)
         {
-            if(this.value == null)
+            if (this.value == null)
             {
                 return this.value;
             }
-            if(this.value > value)
+            if (this.value > value)
             {
-                left = Delete(left,value);
+                left = Delete(left, value);
             }
-            else if(this.value < value)
+            else if (this.value < value)
             {
                 right = Delete(left, value);
             }
-            else {
-                if (this.left == null) {
+            else
+            {
+                if (this.left == null)
+                {
                     return this.right.value;
                 }
-                else if(this.right == null)
+                else if (this.right == null)
                 {
                     return this.left.value;
                 }
@@ -107,7 +109,7 @@ namespace BinaryTreeProject
 
         public BinaryTree Delete(BinaryTree leaf, int? value)
         {
-            if(leaf.value == null)
+            if (leaf.value == null)
             {
                 return leaf;
             }
@@ -120,12 +122,13 @@ namespace BinaryTreeProject
                 leaf.right = Delete(leaf.right, value);
             }
 
-            else {
-                if(leaf.left == null)
+            else
+            {
+                if (leaf.left == null)
                 {
                     return leaf.right;
                 }
-                else if(leaf.right == null)
+                else if (leaf.right == null)
                 {
                     return leaf.left;
                 }
@@ -144,7 +147,7 @@ namespace BinaryTreeProject
 
         public int? Search(int value)
         {
-            if(this.value == null)
+            if (this.value == null)
             {
                 return null;
             }
@@ -153,20 +156,20 @@ namespace BinaryTreeProject
             {
                 return this.value;
             }
-            else if(this.value > value)
+            else if (this.value > value)
             {
                 return Search(this.left, value);//Left
             }
-            else if(this.value < value)
+            else if (this.value < value)
             {
                 return Search(this.right, value); //right
             }
             return this.value;
 
-            
+
         }
 
-        public int? Search(BinaryTree leaf, int? value)
+        private int? Search(BinaryTree leaf, int? value)
         {
             if (leaf.value == null)
             {
@@ -188,10 +191,117 @@ namespace BinaryTreeProject
             return leaf.value;
         }
 
-        public int Traverse()
+        //Traversal Fuctions: Preorder, Postorder, Inorder 
+
+        //Preorder functions
+        public void TraversePreorder()
         {
-            return 1;
+            if(this.value == null)
+            {
+                return;
+            }
+            else
+            {
+                Console.Out.Write(this.value + " ");
+            }
+            if (this.left != null) {
+                this.TraversePreorder(this.left);
+            }
+            if (this.right != null)
+            {
+                this.TraversePreorder(this.right);
+            }
         }
 
+        private void TraversePreorder(BinaryTree leaf)
+        {
+            if (leaf.value == null)
+            {
+                return;
+            }
+            else
+            {
+                Console.Out.Write(leaf.value + " ");
+            }
+            if (leaf.left != null)
+            {
+                leaf.TraversePreorder(leaf.left);
+            }
+            if (leaf.right != null)
+            {
+                leaf.TraversePreorder(leaf.right);
+            }
+        }
+
+        //Postorder function
+        public void TraversePostorder() {
+            if(this.value == null)
+            {
+                return;
+            }
+            if(this.left != null) {
+                this.TraversePostorder(this.left);
+            }
+            if(this.right != null)
+            {
+                this.TraversePostorder(this.right);
+            }
+            Console.Out.Write(this.value);
+        }
+
+        private void TraversePostorder(BinaryTree leaf)
+        {
+            if (leaf.value == null)
+            {
+                return;
+            }
+            if (leaf.left != null)
+            {
+                leaf.TraversePostorder(leaf.left);
+            }
+            if (leaf.right != null)
+            {
+                leaf.TraversePostorder(leaf.right);
+            }
+            Console.Out.Write(leaf.value + " ");
+        }
+
+        //Inorder functions
+        public void TraverseInorder()
+        {
+            if(this.value == null)
+            {
+                return;
+            }
+            if(this.left != null)
+            {
+                this.TraverseInorder(this.left);
+            }
+
+            Console.Out.Write(this.value);
+
+            if (this.right != null) {
+                this.TraverseInorder(this.right);
+            }
+        }
+
+        private void TraverseInorder(BinaryTree leaf)
+        {
+            if (leaf.value == null)
+            {
+                return;
+            }
+            if (leaf.left != null)
+            {
+                leaf.TraverseInorder(leaf.left);
+            }
+
+            Console.Out.Write(leaf.value);
+
+            if (leaf.right != null)
+            {
+                leaf.TraverseInorder(leaf.right);
+            }
+        }
     }
 }
